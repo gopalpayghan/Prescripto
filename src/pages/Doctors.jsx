@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import { useEffect, useState } from 'react';
@@ -18,7 +18,7 @@ const Doctors = () => {
       setFilterDoc(doctors.filter((doc) => doc.speciality === speciality));
     } else {
       setFilterDoc(doctors);
-    }
+    };
   };
 
   useEffect(() => {
