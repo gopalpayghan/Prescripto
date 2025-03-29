@@ -1,20 +1,21 @@
-import React, { useContext } from 'react'
-import { AppContext } from '../context/AppContext'
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useContext } from "react";
+import { AppContext } from "../Context/AppContext";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RelatedDoctors = ({ docId, speciality }) => {
-
-  const { doctors } = useContext(AppContext)
-  const navigate = useNavigate()
-  const [relDoc, setRelDoc] = useState([])
+  const { doctors } = useContext(AppContext);
+  const navigate = useNavigate();
+  const [relDoc, setRelDoc] = useState([]);
 
   useEffect(() => {
     if (doctors.length > 0 && speciality) {
-      const doctorsData = doctors.filter(doc => doc.speciality === speciality && doc._id !== docId)
-      setRelDoc(doctorsData)
+      const doctorsData = doctors.filter(
+        (doc) => doc.speciality === speciality && doc._id !== docId
+      );
+      setRelDoc(doctorsData);
     }
-  }, [doctors, speciality, docId])
+  }, [doctors, speciality, docId]);
 
   return (
     <div className="flex flex-col items-center my-4 gap-4 text-gray-900 md:mx-10">
@@ -22,7 +23,10 @@ const RelatedDoctors = ({ docId, speciality }) => {
       <div className="w-full grid [grid-template-columns:repeat(auto-fill,minmax(200px,1fr))] gap-4 py-5 gap-y-6 px-3 sm:px-0">
         {relDoc.slice(0, 5).map((item, index) => (
           <div
-            onClick={() => { navigate(`/appointment/${item._id}`); scrollTo(0, 0); }}
+            onClick={() => {
+              navigate(`/appointment/${item._id}`);
+              scrollTo(0, 0);
+            }}
             key={index}
             className="border border-gray-200 overflow-hidden rounded-xl cursor-pointer hover:translate-y-[-10px] transition-all duration-500"
           >

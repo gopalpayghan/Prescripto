@@ -1,37 +1,45 @@
-import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { AppContext } from '../context/AppContext';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
+import { AppContext } from "../Context/AppContext";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Doctors = () => {
-
   const { speciality } = useParams();
   const navigate = useNavigate();
   const { doctors } = useContext(AppContext);
   const [filterDoc, setFilterDoc] = useState([]);
-  const [showfilter,setShowFilter] = useState(false);
+  const [showfilter, setShowFilter] = useState(false);
 
   const applyFilter = () => {
     if (speciality) {
       setFilterDoc(doctors.filter((doc) => doc.speciality === speciality));
     } else {
       setFilterDoc(doctors);
-    };
+    }
   };
 
   useEffect(() => {
     applyFilter();
-  },[doctors,speciality]);
-    
+  }, [doctors, speciality]);
 
   return (
     <div>
       <p className="text-gray-600">Browse through the doctors specialist.</p>
       <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
-        <button className={`py-1 px-3 border rounded text-sm sm:hidden transition-all ${showfilter ? 'bg-primary text-white' : ''}`} onClick={()=> setShowFilter(prev => !prev)}>Filters</button>
-        <div className={`flex flex-col gap-4 text-gray-600 text-sm ${showfilter ? 'flex' : 'hidden sm:flex'}`}>
+        <button
+          className={`py-1 px-3 border rounded text-sm sm:hidden transition-all ${
+            showfilter ? "bg-primary text-white" : ""
+          }`}
+          onClick={() => setShowFilter((prev) => !prev)}
+        >
+          Filters
+        </button>
+        <div
+          className={`flex flex-col gap-4 text-gray-600 text-sm ${
+            showfilter ? "flex" : "hidden sm:flex"
+          }`}
+        >
           <p
             onClick={() =>
               speciality === "General physician"
