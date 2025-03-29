@@ -72,7 +72,7 @@ const Navbar = () => {
               navigate("login");
               scrollTo(0, 0);
             }}
-            className=" font-medium  px-8 py-3 bg-primary text-white rounded-md md:block cursor-pointer"
+            className=" font-medium  px-8 py-3 bg-primary text-white rounded-md md:block cursor-pointer hidden"
           >
             Create Account
           </button>
@@ -113,6 +113,10 @@ const Navbar = () => {
             <NavLink to="/contact">
               <li onClick={() => setShowMenu(false)}>CONTACT</li>
               <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
+            </NavLink>
+            <NavLink to="/login">
+              <li className="bg-primary rounded-xl p-2 text-white" onClick={() => setShowMenu(false)}>Create Account</li>
+              
             </NavLink>
           </ul>
         </div>
