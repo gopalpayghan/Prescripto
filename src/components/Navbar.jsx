@@ -6,7 +6,7 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const [showMenu, setShowMenu] = useState(false);
-    const [token, setToken] = useState(true);
+    const [token, setToken] = useState(false);
 
   return (
     <div className="flex items-center justify-between py-4 text-sm mb-10 border-b-2 border-b-gray-400">
