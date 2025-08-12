@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { assets } from '../../assets/assets'
 import { useContext } from 'react'
 import { AdminContext } from '../../context/AdminContext'
@@ -13,7 +13,7 @@ const AllAppointments = () => {
     if (aToken) {
       getAllAppointments()
     }
-  }, [aToken])
+  }, [aToken, getAllAppointments])
 
   return (
     <div className='w-full max-w-6xl m-5 '>

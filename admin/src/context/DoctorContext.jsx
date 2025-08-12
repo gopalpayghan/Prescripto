@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import PropTypes from 'prop-types'
 
 
 export const DoctorContext = createContext()
@@ -128,7 +129,10 @@ const DoctorContextProvider = (props) => {
         </DoctorContext.Provider>
     )
 
+}
 
+DoctorContextProvider.propTypes = {
+    children: PropTypes.node.isRequired
 }
 
 export default DoctorContextProvider

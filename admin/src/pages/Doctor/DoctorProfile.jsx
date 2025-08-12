@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { DoctorContext } from '../../context/DoctorContext'
 import { AppContext } from '../../context/AppContext'
 import { toast } from 'react-toastify'
@@ -44,7 +44,7 @@ const DoctorProfile = () => {
         if (dToken) {
             getProfileData()
         }
-    }, [dToken])
+    }, [dToken, getProfileData])
 
     return profileData && (
         <div>

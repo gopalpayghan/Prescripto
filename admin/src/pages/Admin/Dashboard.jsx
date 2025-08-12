@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { assets } from '../../assets/assets'
 import { AdminContext } from '../../context/AdminContext'
 import { AppContext } from '../../context/AppContext'
@@ -12,7 +12,7 @@ const Dashboard = () => {
     if (aToken) {
       getDashData()
     }
-  }, [aToken])
+  }, [aToken, getDashData])
 
   return dashData && (
     <div className='m-5'>
