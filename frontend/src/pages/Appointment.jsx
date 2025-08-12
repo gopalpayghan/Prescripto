@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, useCallback } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import { assets } from '../assets/assets'
@@ -19,12 +19,12 @@ const Appointment = () => {
 
     const navigate = useNavigate()
 
-    const fetchDocInfo = async () => {
+    const fetchDocInfo = useCallback(async () => {
         const docInfo = doctors.find((doc) => doc._id === docId)
         setDocInfo(docInfo)
-    }
+    }, [doctors, docId]);
 
-    const getAvailableSolts = async () => {
+    const getAvailableSolts = useCallback(async () => {
 
         setDocSlots([])
 
@@ -83,7 +83,7 @@ const Appointment = () => {
 
         }
 
-    }
+    }, [docInfo]);
 
     const bookAppointment = async () => {
 
@@ -122,13 +122,13 @@ const Appointment = () => {
         if (doctors.length > 0) {
             fetchDocInfo()
         }
-    }, [doctors, docId])
+    }, [doctors, docId, fetchDocInfo])
 
     useEffect(() => {
         if (docInfo) {
             getAvailableSolts()
         }
-    }, [docInfo])
+    }, [docInfo, getAvailableSolts])
 
     return docInfo ? (
         <div>

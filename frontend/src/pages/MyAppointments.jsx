@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import axios from 'axios'
@@ -22,7 +22,7 @@ const MyAppointments = () => {
     }
 
     // Getting User Appointments Data Using API
-    const getUserAppointments = async () => {
+    const getUserAppointments = useCallback(async () => {
         try {
 
             const { data } = await axios.get(backendUrl + '/api/user/appointments', { headers: { token } })
@@ -32,7 +32,7 @@ const MyAppointments = () => {
             console.log(error)
             toast.error(error.message)
         }
-    }
+    }, [backendUrl, token]);
 
     // Function to cancel appointment Using API
     const cancelAppointment = async (appointmentId) => {
@@ -121,7 +121,7 @@ const MyAppointments = () => {
         if (token) {
             getUserAppointments()
         }
-    }, [token])
+    }, [token, getUserAppointments])
 
     return (
         <div>
